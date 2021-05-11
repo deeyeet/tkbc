@@ -664,9 +664,9 @@ class TuckERTNT(torch.nn.Module):
         self.W = torch.nn.Parameter(torch.tensor(np.random.uniform(-1, 1, (dim, dim, dim)),dtype=torch.float, device="cuda", requires_grad=True))
 
 
-        self.input_dropout = torch.nn.Dropout(args.input_dropout)
-        self.hidden_dropout1 = torch.nn.Dropout(args.hidden_dropout1)
-        self.hidden_dropout2 = torch.nn.Dropout(args.hidden_dropout2)
+        self.input_dropout = torch.nn.Dropout(p=0.7)
+        self.hidden_dropout1 = torch.nn.Dropout(p=0.5)
+        self.hidden_dropout2 = torch.nn.Dropout(p=0.5)
         self.loss = torch.nn.BCELoss()
 
         self.bn0 = torch.nn.BatchNorm1d(dim)
