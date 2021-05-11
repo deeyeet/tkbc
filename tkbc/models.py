@@ -656,7 +656,7 @@ class TuckERTNT(torch.nn.Module):
 
         self.no_time_emb = args.no_time_emb
 
-        dim = args.embedding_dim
+        dim = args.rank
         self.E = torch.nn.Embedding(sizes[0], dim, padding_idx=0)
         self.R = torch.nn.Embedding(sizes[1], dim, padding_idx=0)
         self.T = torch.nn.Embedding(sizes[3], dim, padding_idx=0)
