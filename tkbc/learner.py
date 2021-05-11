@@ -1,7 +1,6 @@
 # Copyright (c) Facebook, Inc. and its affiliates.
 
 import argparse
-from tkbc.tkbc.models import TuckERT, TuckERTNT
 from typing import Dict
 import logging
 import torch
@@ -9,7 +8,7 @@ from torch import optim
 
 from datasets import TemporalDataset
 from optimizers import TKBCOptimizer, IKBCOptimizer
-from models import ComplEx, TComplEx, TNTComplEx
+from models import ComplEx, TComplEx, TNTComplEx, TuckERT, TuckERTNT
 from regularizers import N3, Lambda3
 
 parser = argparse.ArgumentParser(
