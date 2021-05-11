@@ -1,6 +1,7 @@
 # Copyright (c) Facebook, Inc. and its affiliates.
 
 import argparse
+from tkbc.tkbc.models import TuckERT, TuckERTNT
 from typing import Dict
 import logging
 import torch
@@ -68,6 +69,8 @@ model = {
     'ComplEx': ComplEx(sizes, args.rank),
     'TComplEx': TComplEx(sizes, args.rank, no_time_emb=args.no_time_emb),
     'TNTComplEx': TNTComplEx(sizes, args.rank, no_time_emb=args.no_time_emb),
+    'TuckerT': TuckERT(sizes, args.rank),
+    'TuckerTNT': TuckERTNT(sizes, args.rank)
 }[args.model]
 model = model.cuda()
 
