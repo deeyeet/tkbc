@@ -68,8 +68,8 @@ model = {
     'ComplEx': ComplEx(sizes, args.rank),
     'TComplEx': TComplEx(sizes, args.rank, no_time_emb=args.no_time_emb),
     'TNTComplEx': TNTComplEx(sizes, args.rank, no_time_emb=args.no_time_emb),
-    'TuckERT': TuckERT(sizes, args.rank),
-    'TuckERTNT': TuckERTNT(sizes, args.rank)
+    'TuckERT': TuckERT(sizes, args),
+    'TuckERTNT': TuckERTNT(sizes, args)
 }[args.model]
 model = model.cuda()
 
