@@ -38,10 +38,10 @@ class TKBCOptimizer(object):
                 truth = input_batch[:, 2]
 
                 l_fit = loss(predictions, truth)
-                l_reg = self.emb_regularizer.forward(factors)
+                l_reg = self.emb_regularizer.forwardTucker(factors)
                 l_time = torch.zeros_like(l_reg)
                 if time is not None:
-                    l_time = self.temporal_regularizer.forward(time)
+                    l_time = self.temporal_regularizer.forwardTucker(time)
                 l = l_fit + l_reg + l_time
 
                 self.optimizer.zero_grad()

@@ -22,6 +22,12 @@ class N3(Regularizer):
         for f in factors:
             norm += self.weight * torch.sum(torch.abs(f) ** 3)
         return norm / factors[0].shape[0]
+    
+    def forwardTucker(self, factors):
+        norm = 0
+        for f in factors:
+            norm += self.weight * torch.abs(f) ** 2
+        return norm/3
 
 
 class Lambda3(Regularizer):
@@ -34,3 +40,11 @@ class Lambda3(Regularizer):
         rank = int(ddiff.shape[1] / 2)
         diff = torch.sqrt(ddiff[:, :rank]**2 + ddiff[:, rank:]**2)**3
         return self.weight * torch.sum(diff) / (factor.shape[0] - 1)
+    
+    def forwardTucker(self, factor):
+        ddiff = factor[1:] - factor[:-1]
+        diff = ddiff**2
+        time_diff = self.weight * torch.sum(diff) / (factor.shape[0] - 1)
+        return time_diff
+
+
