@@ -470,16 +470,16 @@ class TuckERT(torch.nn.Module):
         super(TuckERT, self).__init__()
         self.sizes = sizes
         self.no_time_emb = args.no_time_emb
-        dim = args.embedding_dim
+        dim = args.rank
         self.E = torch.nn.Embedding(sizes[0], dim, padding_idx=0)
         self.R = torch.nn.Embedding(sizes[1], dim, padding_idx=0)
         self.T = torch.nn.Embedding(sizes[3], dim, padding_idx=0)
         self.R_noT = torch.nn.Embedding(sizes[1], dim, padding_idx=0)
         self.W = torch.nn.Parameter(torch.tensor(np.random.uniform(-1, 1, (dim, dim, dim)),dtype=torch.float, device="cuda", requires_grad=True))
 
-        self.input_dropout = torch.nn.Dropout(args.input_dropout)
-        self.hidden_dropout1 = torch.nn.Dropout(args.hidden_dropout1)
-        self.hidden_dropout2 = torch.nn.Dropout(args.hidden_dropout2)
+        self.input_dropout = torch.nn.Dropout(p=0.7)
+        self.hidden_dropout1 = torch.nn.Dropout(p=0.5)
+        self.hidden_dropout2 = torch.nn.Dropout(p=0.5)
         self.loss = torch.nn.BCELoss()
 
         self.bn0 = torch.nn.BatchNorm1d(dim)
