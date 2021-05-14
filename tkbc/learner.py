@@ -72,6 +72,7 @@ model = {
     'TuckERTNT': TuckERTNT(sizes, args)
 }[args.model]
 model = model.cuda()
+model.init()
 
 
 opt = optim.Adagrad(model.parameters(), lr=args.learning_rate)

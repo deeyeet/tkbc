@@ -495,6 +495,11 @@ class TuckERT(torch.nn.Module):
         torch.backends.cudnn.enabled = False
         torch.backends.cudnn.deterministic = True
 
+        # 'x' is a list of tuples
+        # A tuple has the form (entity_id, relation_id, entity_id, time_id)
+
+        # Get all the embedding vectors of the 
+        # subject, predicate, object, and timestamps
         lhs = self.E(x[:, 0])
         rel = self.R(x[:, 1])
         rel_no_time = self.R_noT(x[:, 1])
@@ -502,6 +507,7 @@ class TuckERT(torch.nn.Module):
         time = self.T(x[:, 3])
         E = self.E.weight
 
+        # Equation 7 from the paper
         rel_t = rel * time
         #rel_t = self.bn0(rel_t)
 
